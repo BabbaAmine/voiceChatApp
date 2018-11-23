@@ -1,0 +1,32 @@
+<ion-content padding class="back">
+
+  <ion-icon class="iconlogo" ios="ios-eye-off-outline" md="md-eye-off"></ion-icon>
+  <h6 style="text-align: center"> <B> Login to talk about this and that </B> </h6>
+
+
+  <ion-list style="margin-top: 10%">
+
+
+    <ion-item style="background-color: transparent;">
+      <ion-icon name="ios-at-outline" item-start style="color: #e9e9e9"></ion-icon>
+      <ion-label style="color: #e9e9e9" stacked>Username</ion-label>
+      <ion-input [(ngModel)]="credential.username" name="username" type="email" placeholder="Username" style="color: #e9e9e9"></ion-input>
+    </ion-item>
+
+    <ion-item style="background-color: transparent;">
+      <ion-icon name="ios-lock-outline" item-start style="color: #e9e9e9"></ion-icon>
+      <ion-label style="color: #e9e9e9" stacked>Password</ion-label>
+      <ion-input [(ngModel)]="credential.password" name="password" type="password" placeholder="Password" style="color: #e9e9e9"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding class="btnbtn">
+    <button ion-button round outline (click)="doLogin()" style="width: 100%; background-image: linear-gradient(to bottom, #984779 0%, #FF0000 100%); color: #e9e9e9; border-bottom-color: #2d2d2d;">Sign In
+      <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" item-start style="margin-left: 20%"></ion-icon>
+    </button>
+  </div>
+
+  <ion-icon name="logo-facebook" style="margin-left:45%; zoom: 3.0; margin-top: 10%" (click)="loginFB()" ></ion-icon>
+  <p style="color: #ffffff; margin-left:20%"> Don't have account? <button ion-button round outline (click)="register()"> Sing up now </button></p>
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-header xmlns="http://www.w3.org/1999/html" >
+  <ion-navbar style="background-color: transparent;">
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="background">
+  <form>
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+
+          <img [src]=base64Image (click)="accessGallery()"
+               style=" width: 200px;
+                     height: 200px; border-radius: 50%;
+                     margin-left: 25%; background-color: transparent;">
+
+          <ion-item style="background-color: transparent;">
+            <ion-icon name="ios-create-outline" item-start style="color: #e9e9e9"></ion-icon>
+            <ion-label style="color: #e9e9e9" stacked>Username</ion-label>
+            <ion-input type="text" placeholder="Username" [(ngModel)]="registerCredentials.username" name="username"
+                       style="color: #e9e9e9"></ion-input>
+          </ion-item>
+
+          <ion-item style="background-color: transparent;">
+            <ion-icon name="ios-at-outline" item-start style="color: #e9e9e9"></ion-icon>
+            <ion-label style="color: #e9e9e9" stacked>Email</ion-label>
+            <ion-input [(ngModel)]="registerCredentials.email" name="email"
+                       type="text" placeholder="Email" style="color: #e9e9e9" ></ion-input>
+          </ion-item>
+
+          <ion-item style="background-color: transparent;">
+            <ion-icon name="ios-lock-outline" item-start style="color: #e9e9e9"></ion-icon>
+            <ion-label style="color: #e9e9e9" stacked>Password</ion-label>
+            <ion-input [(ngModel)]="registerCredentials.password" name="password"
+                       type="password" placeholder="Password" style="color: #e9e9e9" ></ion-input>
+          </ion-item>
+
+          <ion-item style="background-color: transparent;">
+            <ion-icon name="ios-key-outline" item-start style="color: #e9e9e9"></ion-icon>
+            <ion-label style="color: #e9e9e9" stacked>Confirm password</ion-label>
+            <ion-input [(ngModel)]="registerCredentials.confirmation_password" name="confirmation_password"
+                       type="password" placeholder="Confirm password" style="color: #e9e9e9" ></ion-input>
+          </ion-item>
+
+          <!--<ion-row radio-group>
+             <ion-col>
+                <ion-item style="background-color: transparent;">
+                  <ion-icon name="ios-transgender" item-start style="color: #e9e9e9"></ion-icon>
+                <B style="color: #ffffff">  Sexe : </B>
+                </ion-item>
+             </ion-col>
+            <ion-col>
+               <ion-item style="background-color: transparent;">
+                 <ion-icon name="ios-male-outline" item-start style="color: #e9e9e9"></ion-icon>
+                  <ion-label style="color: #e9e9e9" stacked>Homme</ion-label>
+                  <ion-radio value="homme" ></ion-radio>
+                </ion-item>
+
+              <ion-item style="background-color: transparent;">
+                <ion-icon name="ios-female-outline" item-start style="color: #e9e9e9"></ion-icon>
+                <ion-label style="color: #e9e9e9" stacked>Femme</ion-label>
+                <ion-radio value="femme"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>-->
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button round outline class="submit-btn" full (click)="register()"
+                style="background-image: linear-gradient(to bottom, #984779 0%, #FF0000 100%); color: #e9e9e9; border-bottom-color: #2d2d2d" >Register</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

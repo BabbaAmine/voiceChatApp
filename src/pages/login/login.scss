@@ -1,0 +1,30 @@
+page-login {
+
+  .iconlogo{
+    margin-left: 40%;
+    margin-top: 15%;
+    zoom: 7.0;
+    -webkit-text-fill-color:#E0115F;
+  }
+  h6{
+
+    background: linear-gradient(to bottom, #984779 0%, #FF0000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2em;
+    margin-top: 25px;
+    text-align: center;
+    font-family: "Lobster 1.4 Regular";
+  }
+  .btnbtn{
+    font-size: larger;
+    margin-left: 0%;
+         }
+
+  .back {
+       background: url("../assets/imgs/Capture.PNG");
+       background-repeat: no-repeat;
+       background-size: cover;
+    //background: linear-gradient(to bottom, #000000 0%, #606060 100%);
+  }
+}
