@@ -2,7 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import { NavController,AlertController } from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import {RegisterPage} from "../register/register";
-import {TestServiceProvider} from "../../providers/test-service/test-service";
+import {ChatAppServiceProvider} from "../../providers/chat-app-service/chat-app-service";
+
 
 
 @Component({
@@ -14,7 +15,13 @@ export class HomePage {
   @ViewChild('username') uname;
   @ViewChild('password') password;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private testApi: TestServiceProvider) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public chatAppService: ChatAppServiceProvider ) {
+
+    this.chatAppService.getRoomMsgs({idroom:'1'}).subscribe(res=>{
+      console.log(res);
+    },error=>{
+      console.log(error);
+    })
 
   }
   signIn() {

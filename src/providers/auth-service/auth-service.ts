@@ -15,7 +15,7 @@ export class AuthServiceProvider {
   access: boolean;
   token: string;
 
-  constructor(public http: Http,private _config: ConfigService,private _http: Http) {
+  constructor(private _config: ConfigService,private _http: Http) {
 
   }
 

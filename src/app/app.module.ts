@@ -12,9 +12,9 @@ import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import {IonicStorageModule} from "@ionic/storage";
-import { TestServiceProvider } from '../providers/test-service/test-service';
 import { Facebook } from '@ionic-native/facebook';
 import {ConfigService} from "../providers/config.service";
+import { ChatAppServiceProvider } from '../providers/chat-app-service/chat-app-service';
 
 
 @NgModule({
@@ -46,7 +46,7 @@ import {ConfigService} from "../providers/config.service";
     Camera,
       ConfigService,
     AuthServiceProvider,
-    TestServiceProvider,
+    ChatAppServiceProvider,
   ]
 })
 export class AppModule {}
