@@ -15,13 +15,13 @@ export class HomePage {
   @ViewChild('username') uname;
   @ViewChild('password') password;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public chatAppService: ChatAppServiceProvider ) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController ) {
 
-    this.chatAppService.getRoomMsgs({idroom:'1'}).subscribe(res=>{
+    /*this.chatAppService.getRoomMsgs({idroom:'1'}).subscribe(res=>{
       console.log(res);
     },error=>{
       console.log(error);
-    })
+    })*/
 
   }
   signIn() {

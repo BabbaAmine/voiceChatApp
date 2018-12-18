@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, AlertController, NavParams} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Camera } from '@ionic-native/camera';
+import {LoginPage} from "../login/login";
 
 @IonicPage()
 @Component({
@@ -11,10 +12,11 @@ import { Camera } from '@ionic-native/camera';
 export class RegisterPage {
 
   createSuccess = false;
-  registerCredentials= { username: '', email: '', password: '', confirmation_password: '' };
+  registerCredentials= { username: '', email: '', password: '',first_name:'',last_name:'', confirmation_password: '' };
   base64Image:any;
 
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, public camera:Camera) {
+  constructor(private nav: NavController, private auth: AuthServiceProvider,
+              private alertCtrl: AlertController, public camera:Camera,private navCtrl:NavController) {
     this.base64Image='../assets/imgs/avvatar.png';
   }
 
@@ -32,6 +34,7 @@ export class RegisterPage {
   register() {
         this.auth.signUp(this.registerCredentials).subscribe(data => {
                 let result = data.json();
+                this.navCtrl.push(LoginPage);
                 console.log(result);
             },
             error => {

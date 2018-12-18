@@ -3,17 +3,20 @@ import { Http, Headers, } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {ConfigService} from "../config.service";
 
-/*
-  Generated class for the ChatAppServiceProvider provider.
+export class ChatMessage {
+    idmsg: string;
+    senderId: string;
+    idRoom: string;
+    message: string;
+    created: string;
+}
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ChatAppServiceProvider {
 
   private _urlAddMsgToRoom="/addMsgToRoom/";
   private _urlgetRoomMsgs="/getRoomMsgs/";
+  private  _urlgetUserRooms="/getUserRooms/";
 
   constructor(public _http:Http,private _config: ConfigService) {
     console.log('Hello ChatAppServiceProvider Provider');
@@ -25,12 +28,17 @@ export class ChatAppServiceProvider {
         return headers;
     }
 
+    getUserRooms(data){
+        const url = this._config.baseUrl + this._urlgetUserRooms+data.iduser;
+        return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
+    }
+
     addMsgToRoom(data){
         const url = this._config.baseUrl + this._urlAddMsgToRoom;
         return this._http.post(url,
             {
-                idRoom: data.idroom,
-                senderId:data.senderid,
+                idRoom: data.idRoom,
+                senderId:data.senderId,
                 message:data.message,
             }, {
                 headers: this._buildAuthHeaders()

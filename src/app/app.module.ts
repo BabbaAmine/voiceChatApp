@@ -7,24 +7,28 @@ import { Camera } from '@ionic-native/camera';
 import { MyApp } from './app.component';
 import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
-import { HomePage } from '../pages/home/home';
-import {LoginPage} from "../pages/login/login";
-import {RegisterPage} from "../pages/register/register";
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import {IonicStorageModule} from "@ionic/storage";
 import { Facebook } from '@ionic-native/facebook';
 import {ConfigService} from "../providers/config.service";
 import { ChatAppServiceProvider } from '../providers/chat-app-service/chat-app-service';
+import {HomePageModule} from "../pages/home/home.module";
+import {LoginPageModule} from "../pages/login/login.module";
+import {RegisterPageModule} from "../pages/register/register.module";
+import {MessageriePageModule} from "../pages/messagerie/messagerie.module";
+import {ChatRoomPageModule} from "../pages/chat-room/chat-room.module";
 
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    LoginPage,
-    RegisterPage,
+    MyApp
   ],
   imports: [
+    ChatRoomPageModule,
+    HomePageModule,
+    LoginPageModule,
+    RegisterPageModule,
+    MessageriePageModule,
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
@@ -32,10 +36,7 @@ import { ChatAppServiceProvider } from '../providers/chat-app-service/chat-app-s
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
-    LoginPage,
-    RegisterPage,
+    MyApp
   ],
   providers: [
     StatusBar,

@@ -5,6 +5,7 @@ import {RegisterPage} from "../register/register";
 import {FacebookLoginResponse} from "@ionic-native/facebook";
 import { Facebook} from '@ionic-native/facebook';
 import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
+import {MessageriePage} from "../messagerie/messagerie";
 
 
 /**
@@ -60,12 +61,6 @@ export class LoginPage {
             var name      = user.name;
             var email     = user.email;
 
-            console.log("=== USER INFOS ===");
-            console.log("Gender : " + gender);
-            console.log("Birthday : " + birthday);
-            console.log("Name : " + name);
-            console.log("Email : " + email);
-
             // => Open user session and redirect to the next page
 
           });
@@ -86,9 +81,15 @@ export class LoginPage {
       if(this.credential.username != ''  && this.credential.password != ''){
         this.auth.login(this.credential).subscribe(data=>{
           let result = data.json();
-          localStorage.setItem('token',result.token);
-          localStorage.setItem('user',result.user);
-          console.log(result);
+            console.log(result)
+            localStorage.setItem('pk',result.user.pk);
+            localStorage.setItem('accessToken',result.token);
+            localStorage.setItem('email',result.user.email);
+            localStorage.setItem('fistname',result.user.first_name);
+            localStorage.setItem('lastname',result.user.last_name);
+            localStorage.setItem('username',result.user.username);
+
+          this.navCtrl.setRoot(MessageriePage);
         },error=>{
           console.log(error);
         })

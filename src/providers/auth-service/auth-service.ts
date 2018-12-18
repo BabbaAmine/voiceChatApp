@@ -41,6 +41,8 @@ export class AuthServiceProvider {
         return this._http.post(url,
             {
                 username: credential.username,
+                first_name:credential.first_name,
+                last_name:credential.last_name,
                 password1:credential.password,
                 password2: credential.confirmation_password,
                 email: credential.email,
