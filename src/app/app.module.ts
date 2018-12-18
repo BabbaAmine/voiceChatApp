@@ -17,7 +17,8 @@ import {LoginPageModule} from "../pages/login/login.module";
 import {RegisterPageModule} from "../pages/register/register.module";
 import {MessageriePageModule} from "../pages/messagerie/messagerie.module";
 import {ChatRoomPageModule} from "../pages/chat-room/chat-room.module";
-
+import { TextToSpeech } from '@ionic-native/text-to-speech';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,8 @@ import {ChatRoomPageModule} from "../pages/chat-room/chat-room.module";
       ConfigService,
     AuthServiceProvider,
     ChatAppServiceProvider,
+    TextToSpeech,
+    SpeechRecognition,
   ]
 })
 export class AppModule {}

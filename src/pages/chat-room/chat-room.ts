@@ -1,7 +1,10 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
 import {Content, Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import * as moment from "moment";
 import {ChatMessage,ChatAppServiceProvider} from "../../providers/chat-app-service/chat-app-service";
+import {TextToSpeech} from '@ionic-native/text-to-speech';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
+
 
 @IonicPage()
 @Component({
@@ -17,10 +20,20 @@ export class ChatRoomPage {
     editorMsg = '';
     showEmojiPicker = false;
     currentUserId:any;
+    text: string;
+    rate: number;
+    locale: string;
+    matches:any;
+    isRecording = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private events: Events,private chatservice: ChatAppServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private events: Events,
+              private chatservice: ChatAppServiceProvider,private tts: TextToSpeech,private speechRecognition: SpeechRecognition,
+              private cd: ChangeDetectorRef) {
       this.idRoom = this.navParams.get('idroom');
       this.currentUserId = localStorage.getItem('pk');
+      this.text = 'Initial text';
+      this.rate = 1;
+      this.locale = 'en-US';
 
   }
 
@@ -60,6 +73,7 @@ export class ChatRoomPage {
             console.log(this.msgList);
             this.scrollToBottom();
             this.verifAdminSendMsg();
+
         });
     }
 
@@ -73,6 +87,7 @@ export class ChatRoomPage {
 
                 if (test == false && data[i].senderId != this.currentUserId) {
                     this.msgList.push(data[i]);
+                    this.tts.speak(data[i].message);
                     this.scrollToBottom();
                 }
             }
@@ -103,26 +118,54 @@ export class ChatRoomPage {
 
     sendMsg() {
         if (!this.editorMsg.trim()) return;
-
         const id = Date.now().toString();
-        let newMsg: ChatMessage = {
-            idmsg: Date.now().toString(),
-            senderId: localStorage.getItem('pk'),
-            idRoom: this.idRoom,
-            message: this.editorMsg,
-            created: moment().format('YYYY-MM-DD hh:mm:ss')
-        };
 
-        this.chatservice.addMsgToRoom(newMsg).subscribe(data => {
-            console.log(data);
-            this.pushNewMsg(newMsg);
-            this.editorMsg = '';
+      let newMsg: ChatMessage = {
+        idmsg: Date.now().toString(),
+        senderId: localStorage.getItem('pk'),
+        idRoom: this.idRoom,
+        message: this.editorMsg,
+        created: moment().format('YYYY-MM-DD hh:mm:ss')
+      };
 
-        }, error => {
-            console.log(error);
-        });
+      this.chatservice.addMsgToRoom(newMsg).subscribe(data => {
+        console.log(data);
+        this.pushNewMsg(newMsg);
+        this.editorMsg = '';
+
+      }, error => {
+        console.log(error);
+      });
 
     }
+
+  startListenning(){
+    //getpermission
+    this.speechRecognition.hasPermission()
+      .then((hasPermission: boolean) => {
+        if (!hasPermission) {
+          this.speechRecognition.requestPermission();
+          this.speechRecognition.startListening().subscribe(matches => {
+            this.editorMsg = matches[0];
+            this.cd.detectChanges();
+          },error=>{
+            //alert(error);
+          });
+          this.isRecording = true;
+        }else{
+
+          this.speechRecognition.startListening().subscribe(matches => {
+            this.editorMsg = matches[0];
+            this.cd.detectChanges();
+          },error=>{
+            //alert(error);
+          });
+          this.isRecording = true;
+        }
+      });
+
+
+  }
 
     pushNewMsg(msg: ChatMessage) {
         this.msgList.push(msg);

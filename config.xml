@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="HEAS.voiceApp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>VoiceApp</name>
+<widget id="heas.voiceapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>voiceApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -88,6 +88,8 @@
         <variable name="APP_NAME" value="VoiceApp" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.37.0" />
     </plugin>
-    <engine name="android" spec="~6.3.0" />
     <allow-navigation href="http://192.168.1.5:8100" />
+    <plugin name="cordova-plugin-tts" spec="0.2.3" />
+    <plugin name="cordova-plugin-speechrecognition" spec="1.2.0" />
+    <engine name="android" spec="6.3.0" />
 </widget>
