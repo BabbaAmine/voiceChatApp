@@ -1,0 +1,29 @@
+
+<ion-header>
+
+  <ion-navbar >
+    <ion-title *ngIf="user">{{user.first_name}} {{user.last_name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content *ngIf="user">
+
+  <div text-center>
+    <ion-grid>
+      <ion-row center>
+        <img class="coverp" src="../../assets/imgs/avatar.png">
+        <div>
+          <img class="profile-picture" src="../../assets/imgs/avatar.png">
+        </div>
+      </ion-row>
+      <ion-row class="rowProfile">
+        <ion-col>
+          <span class="Username f-gras">{{user.email}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

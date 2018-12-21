@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {ChatAppServiceProvider, ChatMessage} from "../../providers/chat-app-service/chat-app-service";
 import {ChatRoomPage} from "../chat-room/chat-room";
+import {SearchPage} from "../search/search";
 
 
 
@@ -13,8 +14,10 @@ import {ChatRoomPage} from "../chat-room/chat-room";
 export class MessageriePage {
 
   rooms=[];
+  users=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,public chatAppService: ChatAppServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,
+              public chatAppService: ChatAppServiceProvider) {
     console.log(localStorage.getItem('pk'));
 
       let loading = this.loadingCtrl.create({
@@ -39,6 +42,9 @@ export class MessageriePage {
 
     openRoom(idRoom){
          this.navCtrl.push(ChatRoomPage,{idroom:idRoom});
+    }
+    openSearchPage(){
+       this.navCtrl.push(SearchPage);
     }
 
 }
