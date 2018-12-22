@@ -16,7 +16,8 @@ export class ProfilPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public chatAppService: ChatAppServiceProvider) {
     this.iduser = this.navParams.get('iduser');
     this.chatAppService.getUserDetails(this.iduser).subscribe(res=>{
-      this.user = res;
+      this.user = res.user;
+      console.log(this.user);
     },error=>{
       console.log(error);
     })

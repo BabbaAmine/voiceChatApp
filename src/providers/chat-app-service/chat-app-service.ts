@@ -18,7 +18,7 @@ export class ChatAppServiceProvider {
   private _urlgetRoomMsgs="/getRoomMsgs/";
   private  _urlgetUserRooms="/getUserRooms/";
   private _urlGetUsers="/getAllUsers/";
-  private _urlgetUserDetail="/rest-auth/user/";
+  private _urlgetUserDetail="/getUserDetails/";
 
   constructor(public _http:Http,private _config: ConfigService) {
     console.log('Hello ChatAppServiceProvider Provider');
@@ -64,8 +64,8 @@ export class ChatAppServiceProvider {
     }
 
     getUserDetails(id){
-        const url = this._config.baseUrl + this._urlgetUserDetail+'?pk='+id;
-        return this._http.get(url, {headers: this._buildAuthHeadersWithToken()}).map(res => res.json());
+        const url = this._config.baseUrl + this._urlgetUserDetail+id;
+        return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
     }
 
 }
