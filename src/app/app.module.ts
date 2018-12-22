@@ -19,6 +19,7 @@ import {MessageriePageModule} from "../pages/messagerie/messagerie.module";
 import {ChatRoomPageModule} from "../pages/chat-room/chat-room.module";
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { Contacts, ContactFieldType, ContactFindOptions } from '@ionic-native/contacts';
 
 @NgModule({
   declarations: [
@@ -46,11 +47,12 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HTTP,
     Camera,
-      ConfigService,
+    ConfigService,
     AuthServiceProvider,
     ChatAppServiceProvider,
     TextToSpeech,
     SpeechRecognition,
+    Contacts,
   ]
 })
 export class AppModule {}

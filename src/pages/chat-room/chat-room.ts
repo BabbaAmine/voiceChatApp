@@ -33,7 +33,7 @@ export class ChatRoomPage {
       this.currentUserId = localStorage.getItem('pk');
       this.text = 'Initial text';
       this.rate = 1;
-      this.locale = 'en-US';
+      this.locale = 'fr-FR';
 
   }
 
