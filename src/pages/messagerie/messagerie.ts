@@ -17,8 +17,8 @@ export class MessageriePage {
   users=[];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,public chatAppService: ChatAppServiceProvider,
-            ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,
+              public chatAppService: ChatAppServiceProvider,) {
 
     console.log(localStorage.getItem('pk'));
 
@@ -47,6 +47,4 @@ export class MessageriePage {
     openSearchPage(){
        this.navCtrl.push(SearchPage);
     }
-
-
 }

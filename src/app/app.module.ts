@@ -56,7 +56,6 @@ import {ProfilPageModule} from "../pages/profil/profil.module";
     ChatAppServiceProvider,
     TextToSpeech,
     SpeechRecognition,
-
   ]
 })
 export class AppModule {}
