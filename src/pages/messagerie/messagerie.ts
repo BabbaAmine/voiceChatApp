@@ -28,11 +28,16 @@ export class MessageriePage {
       loading.present();
       this.chatAppService.getUserRooms({iduser:localStorage.getItem('pk')}).subscribe(res=>{
         console.log(res);
-        this.rooms=res.list;
+        for(let i=0 ; i< res.total ; i++){
+          console.log(res.list[i].idRoom);
+          this.chatAppService.getRoomdetails({idroom:res.list[i].idRoom}).subscribe(data=>{
+             this.rooms.push(data);
+          })
+        }
         loading.dismiss();
       },error=>{
         loading.dismiss();
-        alert(JSON.stringify(error));
+        //alert(JSON.stringify(error));
       })
 
   }
