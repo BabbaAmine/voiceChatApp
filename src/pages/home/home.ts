@@ -1,31 +1,44 @@
-import {Component, ViewChild} from '@angular/core';
-import { NavController,AlertController } from 'ionic-angular';
 import {LoginPage} from "../login/login";
-import {RegisterPage} from "../register/register";
-import {ChatAppServiceProvider} from "../../providers/chat-app-service/chat-app-service";
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, Slides } from 'ionic-angular';
 
-
-
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  @ViewChild('username') uname;
-  @ViewChild('password') password;
+  @ViewChild('slider') slider: Slides;
+  slideIndex = 0;
+  slides = [
+    {
+      imageUrl: 'assets/imgs/backgr1.PNG',
+    },
+    {
+      imageUrl: 'assets/imgs/backgr2.GIF',
+    },
+    {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController ) {
+      imageUrl: 'assets/imgs/backgr3.PNG',
+    },
+    {
+      imageUrl: 'assets/imgs/start.jpg',
+    }
+  ];
 
+  constructor(public navCtrl: NavController) { }
 
-
+  onSlideChanged() {
+    this.slideIndex = this.slider.getActiveIndex();
+    console.log('Slide changed! Current index is', this.slideIndex);
   }
   signIn() {
     this.navCtrl.push(LoginPage);
   }
-
-  register(){
-    this.navCtrl.push(RegisterPage);
+  skip() {
+    console.log('Skip clicked');
   }
+
 }
 

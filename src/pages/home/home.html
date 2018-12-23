@@ -1,18 +1,17 @@
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-<ion-content padding class="myview" >
-
-  <ion-icon class="iconlogo" ios="ios-eye-off-outline" md="md-eye-off"></ion-icon>
-  <h1 style="color:#ffffff; text-align: center"> EyesOut Chat </h1>
-
-  <ion-footer>
-
-    <div>
-      <a  class="btn btn-1">
-        <button ion-button round outline (click)="signIn()" class="txt" style="color:#ffffff">
-          <i class="fa fa-chevron-right"> </i>  GET STARTED  </button>
-      </a>
-    </div>
-
-  </ion-footer>
+<ion-content fullscreen="true" class="no-padding-top">
+  <ion-slides #slider pager="true" autoplay="3000" (ionSlideWillChange)="onSlideChanged()">
+    <ion-slide *ngFor="let slide of slides"
+               class="slide-background" style="background-repeat: no-repeat; background-size: cover; "
+               [ngStyle]="{'background-image': 'url(' + slide.imageUrl +')'}">
+      <div class="text-wrapper">
+        <div class="slide-text">
+          <h2 class="slide-title" [innerHTML]="slide.title"></h2><br>
+          <p [innerHTML]="slide.description"></p>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <div class="floating-buttons pop-in" *ngIf="slideIndex >= slides.length - 1">
+    <button ion-button clear large full (click)="signIn()">Let's go!</button>
+  </div>
 </ion-content>
