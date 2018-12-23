@@ -3,12 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ChatAppServiceProvider} from "../../providers/chat-app-service/chat-app-service";
 import {ProfilPage} from "../profil/profil";
 
-/**
- * Generated class for the SearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,7 +10,7 @@ import {ProfilPage} from "../profil/profil";
   templateUrl: 'search.html',
 })
 export class SearchPage {
-    items: any[];
+    items=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public chatAppService: ChatAppServiceProvider) {
   }
@@ -27,9 +21,13 @@ export class SearchPage {
 
 
     getItems(ev: any) {
-
+        this.items=[];
         this.chatAppService.getusersBy().subscribe(res=>{
-            this.items = res.list;
+            for(let i = 0 ; i < res.total ; i++){
+                if(res.list[i].id != localStorage.getItem('pk') && res.list[i].is_superuser == false){
+                    this.items.push(res.list[i]);
+                }
+            }
             const val = ev.target.value;
             if (val && val.trim() != '') {
                 this.items = this.items.filter((item) => {

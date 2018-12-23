@@ -21,7 +21,7 @@ export class ProfilPage {
       console.log(this.user);
     },error=>{
       console.log(error);
-    })
+    });
 
     this.user = {
       name: 'Cosima Niehaus',

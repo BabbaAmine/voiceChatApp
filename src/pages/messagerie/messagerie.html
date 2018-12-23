@@ -12,42 +12,13 @@
 <ion-content padding class="chats">
   <ion-list>
     <ion-list-header>Today</ion-list-header>
-    <ion-item *ngFor="let room of rooms" (click)="openRoom(room.idRoom)">
+    <ion-item *ngFor="let room of rooms" (click)="openRoom(room.message.idRoom)">
       <ion-avatar item-left>
         <img src="../../assets/imgs/avatar.png">
       </ion-avatar>
-      <h2>{{room.idRoom}}</h2>
-      <p>Bonjour soni <3</p>
-      <ion-note item-end>10:10 pm</ion-note>
+      <h4>{{room.user.first_name}} {{room.user.last_name}}</h4>
+      <p>{{room.message.message}}</p>
+      <ion-note item-end>il y a {{room.message.created | relativeTime}}</ion-note>
     </ion-item>
   </ion-list>
-
-  <ion-list>
-    <ion-list-header>Yesterday</ion-list-header>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/avatar.png">
-      </ion-avatar>
-      <h2>Sonia</h2>
-      <p>Bonjour ashkouma</p>
-      <ion-note item-end>11:11 pm</ion-note>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/avatar.png">
-      </ion-avatar>
-      <h2>Amine</h2>
-      <p>Bonjour canim</p>
-      <ion-note item-end>11:12 pm</ion-note>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/avatar.png">
-      </ion-avatar>
-      <h2>Samsoum</h2>
-      <p>Bonjour Samsoum</p>
-      <ion-note item-end>11:13 pm</ion-note>
-    </ion-item>
-  </ion-list>
-
 </ion-content>
