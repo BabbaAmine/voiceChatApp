@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {ChatAppServiceProvider, ChatMessage} from "../../providers/chat-app-service/chat-app-service";
 import {ChatRoomPage} from "../chat-room/chat-room";
-import { Contacts } from '@ionic-native/contacts';
 import {SearchPage} from "../search/search";
 
 
@@ -18,8 +17,8 @@ export class MessageriePage {
   users=[];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,public chatAppService: ChatAppServiceProvider,
-              private contact: Contacts) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,
+              public chatAppService: ChatAppServiceProvider,) {
 
     console.log(localStorage.getItem('pk'));
 
@@ -48,15 +47,5 @@ export class MessageriePage {
     openSearchPage(){
        this.navCtrl.push(SearchPage);
     }
-
-  async getContact() {
-    try{
-      const selectedContact = await this.contact.pickContact();
-      console.log('Selected contact: ', selectedContact);
-    }
-    catch(e){
-      console.error(e);
-    }
-  }
 
 }
