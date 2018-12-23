@@ -17,6 +17,8 @@ export class ChatAppServiceProvider {
   private _urlAddMsgToRoom="/addMsgToRoom/";
   private _urlgetRoomMsgs="/getRoomMsgs/";
   private  _urlgetUserRooms="/getUserRooms/";
+  private _urlGetUsers="/getAllUsers/";
+  private _urlgetUserDetail="/getUserDetails/";
 
   constructor(public _http:Http,private _config: ConfigService) {
     console.log('Hello ChatAppServiceProvider Provider');
@@ -25,6 +27,12 @@ export class ChatAppServiceProvider {
     private _buildAuthHeaders() {
         const headers = new Headers();
         headers.append("Content-Type", 'application/json');
+        return headers;
+    }
+    private _buildAuthHeadersWithToken() {
+        const headers = new Headers();
+        headers.append("Content-Type", 'application/json');
+        headers.append("Authorization", 'JWT '+localStorage.getItem('accessToken'));
         return headers;
     }
 
@@ -47,6 +55,16 @@ export class ChatAppServiceProvider {
 
     getRoomMsgs(data){
         const url = this._config.baseUrl + this._urlgetRoomMsgs+data.idroom;
+        return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
+    }
+
+    getusersBy(){
+        const url = this._config.baseUrl + this._urlGetUsers;
+        return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
+    }
+
+    getUserDetails(id){
+        const url = this._config.baseUrl + this._urlgetUserDetail+id;
         return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
     }
 

@@ -20,12 +20,17 @@ import {ChatRoomPageModule} from "../pages/chat-room/chat-room.module";
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Contacts, ContactFieldType, ContactFindOptions } from '@ionic-native/contacts';
+import {SearchPageModule} from "../pages/search/search.module";
+import {ProfilPageModule} from "../pages/profil/profil.module";
+
 
 @NgModule({
   declarations: [
     MyApp
   ],
   imports: [
+    ProfilPageModule,
+    SearchPageModule,
     ChatRoomPageModule,
     HomePageModule,
     LoginPageModule,

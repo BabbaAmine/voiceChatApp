@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content parallax-header no-bounce class="bg-modal" *ngIf="user">
+  <div class="header-image"></div>
+  <div class="main-content" text-wrap text-center>
+    <div class="circular"></div>
+    <h2>{{user.first_name}}</h2>
+    <p>{{user.is_active}}</p>
+    <p class="profile-description">{{user.description}}</p>
+    <hr>
+    <ion-list no-lines>
+      <ion-item>
+        <ion-icon name="mail" color="primary" item-start></ion-icon>
+        <p>Email</p>
+        {{user.email}}
+      </ion-item>
+      <ion-item>
+        <ion-icon item-start name="call" color="danger"></ion-icon>
+        <p>Mobile</p>
+        {{user.phone}} 52979596
+      </ion-item>
+
+      <ion-item>
+        <ion-icon item-start name="pin" color="twitter"></ion-icon>
+        <p>{{user.address}} Manouba 10 rue fatimides </p>
+      </ion-item>
+    </ion-list>
+    <hr>
+    <a href="#" button ion-button block color="addFreinds" icon-start>
+      <ion-icon name='add'></ion-icon>
+      Ajouter comme amis
+    </a>
+  </div>
+
+</ion-content>

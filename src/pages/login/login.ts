@@ -1,19 +1,9 @@
-import {Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera';
-import {RegisterPage} from "../register/register";
-import {FacebookLoginResponse} from "@ionic-native/facebook";
-import { Facebook} from '@ionic-native/facebook';
-import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
+// import { FormBuilder, FormControl, Validator } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { AlertController, App, LoadingController, NavController, Slides, IonicPage } from 'ionic-angular';
 import {MessageriePage} from "../messagerie/messagerie";
-
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Camera } from '@ionic-native/camera';
+import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
 
 @IonicPage()
 @Component({
@@ -21,82 +11,120 @@ import {MessageriePage} from "../messagerie/messagerie";
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  @ViewChild('username') user ;
-  @ViewChild('password') password ;
-  credential={username:'',password:''};
   base64Image:any;
+  public loginForm: any;
+  createSuccess = false;
+  public backgroundImage = 'assets/imgs/background/background-6.jpg';
+  credential={username:'',password:''};
+  registerCredentials= { username: '', email: '', password: '',first_name:'',last_name:'', confirmation_password: '' };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public camera:Camera, public fb: Facebook,private auth: AuthServiceProvider ) {
+  constructor(
+    public loadingCtrl: LoadingController,private auth: AuthServiceProvider,public camera:Camera,
+    public alertCtrl: AlertController,private nav: NavController,
+    public navCtrl: NavController,
+    public app: App
+  ) { this.base64Image='../assets/imgs/avatar.png'; }
+
+  // Slider methods
+  @ViewChild('slider') slider: Slides;
+  @ViewChild('innerSlider') innerSlider: Slides;
+
+  goToLogin() {
+    this.slider.slideTo(1);
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  goToSignup() {
+    this.slider.slideTo(2);
   }
 
-  register(){
-    this.navCtrl.push(RegisterPage);
+  slideNext() {
+    this.innerSlider.slideNext();
   }
 
-  loginFB()
-  {
-    // Login with permissions
-    this.fb.login(['public_profile', 'user_photos', 'email', 'user_birthday'])
-      .then( (res: FacebookLoginResponse) => {
+  slidePrevious() {
+    this.innerSlider.slidePrev();
+  }
 
-        // The connection was successful
-        if(res.status == "connected") {
+  presentLoading(message) {
+    const loading = this.loadingCtrl.create({
+      duration: 500
+    });
 
-          // Get user ID and Token
-          var fb_id = res.authResponse.userID;
-          var fb_token = res.authResponse.accessToken;
-
-          // Get user infos from the API
-          this.fb.api("/me?fields=name,gender,birthday,email", []).then((user) => {
-
-            // Get the connected user details
-            var gender    = user.gender;
-            var birthday  = user.birthday;
-            var name      = user.name;
-            var email     = user.email;
-
-            // => Open user session and redirect to the next page
-
-          });
-
-        }
-        // An error occurred while loging-in
-        else {
-          console.log("An error occurred...");
-        }
-
-      })
-      .catch((e) => {
-        console.log('Error logging into Facebook', e);
+    loading.onDidDismiss(() => {
+      const alert = this.alertCtrl.create({
+        title: 'Success',
+        subTitle: message,
+        buttons: ['Dismiss']
       });
+      alert.present();
+    });
+
+    loading.present();
   }
 
-  doLogin(){
-      if(this.credential.username != ''  && this.credential.password != ''){
-        this.auth.login(this.credential).subscribe(data=>{
-          let result = data.json();
-            console.log(result)
-            localStorage.setItem('pk',result.user.pk);
-            localStorage.setItem('accessToken',result.token);
-            localStorage.setItem('email',result.user.email);
-            localStorage.setItem('fistname',result.user.first_name);
-            localStorage.setItem('lastname',result.user.last_name);
-            localStorage.setItem('username',result.user.username);
+  login() {
+    //this.presentLoading('Thanks for signing up!');
+    if(this.credential.username != ''  && this.credential.password != ''){
+      this.auth.login(this.credential).subscribe(data=>{
+        let result = data.json();
+        console.log(result)
+        localStorage.setItem('pk',result.user.pk);
+        localStorage.setItem('accessToken',result.token);
+        localStorage.setItem('email',result.user.email);
+        localStorage.setItem('fistname',result.user.first_name);
+        localStorage.setItem('lastname',result.user.last_name);
+        localStorage.setItem('username',result.user.username);
 
-          this.navCtrl.setRoot(MessageriePage);
-        },error=>{
-          console.log(error);
-        })
-      }else{
+        this.navCtrl.setRoot(MessageriePage);
+      },error=>{
+        console.log(error);
+      })
+    }else{
 
-      }
-
+    }
   }
 
+  signup() {
+    this.auth.signUp(this.registerCredentials).subscribe(data => {
+        let result = data.json();
+        this.navCtrl.push(LoginPage);
+        console.log(result);
+      },
+      error => {
+        console.log(error);
+      });
+    //this.presentLoading('Thanks for signing up!');
+  }
+  showPopup(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.createSuccess) {
+              this.nav.popToRoot();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  accessGallery(){
+    this.camera.getPicture({
+      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      destinationType: this.camera.DestinationType.DATA_URL
+    }).then((imageData) => {
+      this.base64Image = 'data:image/jpeg;base64,'+imageData;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  resetPassword() {
+    this.presentLoading('An e-mail was sent with your new password.');
+  }
 }

@@ -1,32 +1,79 @@
-<ion-content padding class="back">
-
-  <ion-icon class="iconlogo" ios="ios-eye-off-outline" md="md-eye-off"></ion-icon>
-  <h6 style="text-align: center"> <B> Login to talk about this and that </B> </h6>
-
-
-  <ion-list style="margin-top: 10%">
-
-
-    <ion-item style="background-color: transparent;">
-      <ion-icon name="ios-at-outline" item-start style="color: #e9e9e9"></ion-icon>
-      <ion-label style="color: #e9e9e9" stacked>Username</ion-label>
-      <ion-input [(ngModel)]="credential.username" name="username" type="email" placeholder="Username" style="color: #e9e9e9"></ion-input>
-    </ion-item>
-
-    <ion-item style="background-color: transparent;">
-      <ion-icon name="ios-lock-outline" item-start style="color: #e9e9e9"></ion-icon>
-      <ion-label style="color: #e9e9e9" stacked>Password</ion-label>
-      <ion-input [(ngModel)]="credential.password" name="password" type="password" placeholder="Password" style="color: #e9e9e9"></ion-input>
-    </ion-item>
-
-  </ion-list>
-
-  <div padding class="btnbtn">
-    <button ion-button round outline (click)="doLogin()" style="width: 100%; background-image: linear-gradient(to bottom, #984779 0%, #FF0000 100%); color: #e9e9e9; border-bottom-color: #2d2d2d;">Sign In
-      <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" item-start style="margin-left: 20%"></ion-icon>
-    </button>
-  </div>
-
-  <ion-icon name="logo-facebook" style="margin-left:45%; zoom: 3.0; margin-top: 10%" (click)="loginFB()" ></ion-icon>
-  <p style="color: #ffffff; margin-left:20%"> Don't have account? <button ion-button round outline (click)="register()"> Sing up now </button></p>
+<ion-content class="transparent-header" [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}">
+  <ion-slides #slider class="content-slider" direction="vertical">
+    <ion-slide class="swiper-no-swiping">
+      <div padding>
+        <img class="logo" src="assets/imgs/logo/logo-pr.png" style="width: 200px;" />
+        <ion-slides class="text-slider" autoplay="2000">
+          <ion-slide>
+            <h3> Really nice stuff </h3>
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/imgs/misc/emoji.png" />
+          </ion-slide>
+        </ion-slides>
+        <ion-row>
+          <ion-col col-6>
+            <button ion-button round color="light" class="login-button" (click)="goToLogin()">SIGN IN</button>
+          </ion-col>
+          <ion-col col-6>
+            <button ion-button round color="light" class="login-button" (click)="goToSignup()">SIGN UP</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-slide>
+    <ion-slide class="zoom swiper-no-swiping">
+      <ion-slides #innerSlider class="content-slider">
+        <ion-slide class="swiper-no-swiping">
+          <div style="padding: 20% 32px 32px 32px">
+            <ion-item>
+              <ion-label floating color="#2d2d2d" >Username</ion-label>
+              <ion-input type="text" style="color: #2d2d2d" [(ngModel)]="credential.username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating style="color: #2d2d2d" >Password</ion-label>
+              <ion-input type="password" style="color: #2d2d2d" [(ngModel)]="credential.password"></ion-input>
+            </ion-item>
+            <button ion-button block round (click)="login()" color="light" class="login-button">Login</button>
+            <button ion-button clear (click)="slideNext()" color="light" class="forgot-button">FORGOT PASSWORD?</button>
+          </div>
+          <button ion-button clear (click)="goToSignup()" class="slide-button position-bottom">GO TO SIGNUP<ion-icon name="arrow-down"></ion-icon></button>
+        </ion-slide>
+        <ion-slide class="swiper-no-swiping">
+          <div style="padding: 20% 32px 32px 32px">
+            <ion-item>
+              <ion-label floating style="color: #2d2d2d">E-mail</ion-label>
+              <ion-input type="email" style="color: #2d2d2d" ></ion-input>
+            </ion-item>
+            <button ion-button block round (click)="resetPassword()" color="light" class="login-button">RESET PASSWORD</button>
+            <button ion-button clear (click)="slidePrevious()" color="light" class="goback-button"><ion-icon name="arrow-back"></ion-icon> GO BACK</button>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </ion-slide>
+    <ion-slide class="zoom swiper-no-swiping">
+      <button ion-button clear (click)="goToLogin()" class="slide-button">
+        GO TO LOGIN
+        <ion-icon name="arrow-up"></ion-icon>
+      </button>
+      <div style="padding: 32px">
+        <img [src]=base64Image (click)="accessGallery()"
+             style=" width: 200px;
+                     height: 200px; border-radius: 50%;
+                     margin-left: 10%; background-color: transparent;">
+        <ion-item>
+          <ion-label floating style="color: #2d2d2d" >Username</ion-label>
+          <ion-input type="text" style="color: #2d2d2d" [(ngModel)]="registerCredentials.username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating style="color: #2d2d2d">Password</ion-label>
+          <ion-input type="password" style="color: #2d2d2d" [(ngModel)]="registerCredentials.password"></ion-input>
+        </ion-item>
+        <ion-item class="margin-bottom">
+          <ion-label floating style="color: #2d2d2d">Confirm Password</ion-label>
+          <ion-input type="password" style="color: #2d2d2d"></ion-input>
+        </ion-item>
+        <button ion-button block round (click)="signup()" color="light" class="login-button">SIGN UP</button>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

@@ -3,6 +3,8 @@ import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angu
 import {ChatAppServiceProvider, ChatMessage} from "../../providers/chat-app-service/chat-app-service";
 import {ChatRoomPage} from "../chat-room/chat-room";
 import { Contacts } from '@ionic-native/contacts';
+import {SearchPage} from "../search/search";
+
 
 
 @IonicPage()
@@ -13,10 +15,12 @@ import { Contacts } from '@ionic-native/contacts';
 export class MessageriePage {
 
   rooms=[];
+  users=[];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private loadingCtrl:LoadingController,public chatAppService: ChatAppServiceProvider,
               private contact: Contacts) {
+
     console.log(localStorage.getItem('pk'));
 
       let loading = this.loadingCtrl.create({
@@ -40,6 +44,9 @@ export class MessageriePage {
 
     openRoom(idRoom){
          this.navCtrl.push(ChatRoomPage,{idroom:idRoom});
+    }
+    openSearchPage(){
+       this.navCtrl.push(SearchPage);
     }
 
   async getContact() {
