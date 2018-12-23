@@ -13,17 +13,17 @@ export class HomePage {
   slideIndex = 0;
   slides = [
     {
-      imageUrl: 'assets/imgs/backgr1.PNG',
+      imageUrl: 'assets/imgs/pages/page1.PNG',
     },
     {
-      imageUrl: 'assets/imgs/backgr2.GIF',
+      imageUrl: 'assets/imgs/pages/page2.PNG',
     },
     {
 
-      imageUrl: 'assets/imgs/backgr3.PNG',
+      imageUrl: 'assets/imgs/pages/page3.PNG',
     },
     {
-      imageUrl: 'assets/imgs/start.jpg',
+      imageUrl: 'assets/imgs/pages/page4.PNG',
     }
   ];
 
