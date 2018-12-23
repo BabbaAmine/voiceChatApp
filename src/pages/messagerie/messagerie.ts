@@ -47,5 +47,4 @@ export class MessageriePage {
     openSearchPage(){
        this.navCtrl.push(SearchPage);
     }
-
 }

@@ -1,11 +1,4 @@
-<!--
-  Generated template for the MessageriePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Chat</ion-title>
     <ion-buttons end>
@@ -13,21 +6,47 @@
         <ion-icon name="ios-search"></ion-icon>
       </button>
     </ion-buttons>
-
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding class="chats">
   <ion-list>
-
+    <ion-list-header>Today</ion-list-header>
     <ion-item *ngFor="let room of rooms" (click)="openRoom(room.idRoom)">
       <ion-avatar item-left>
         <img src="../../assets/imgs/avatar.png">
       </ion-avatar>
       <h2>{{room.idRoom}}</h2>
-      <p>Bonjour soni <3 </p>
+      <p>Bonjour soni <3</p>
+      <ion-note item-end>10:10 pm</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>Yesterday</ion-list-header>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/avatar.png">
+      </ion-avatar>
+      <h2>Sonia</h2>
+      <p>Bonjour ashkouma</p>
+      <ion-note item-end>11:11 pm</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/avatar.png">
+      </ion-avatar>
+      <h2>Amine</h2>
+      <p>Bonjour canim</p>
+      <ion-note item-end>11:12 pm</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/avatar.png">
+      </ion-avatar>
+      <h2>Samsoum</h2>
+      <p>Bonjour Samsoum</p>
+      <ion-note item-end>11:13 pm</ion-note>
     </ion-item>
   </ion-list>
 
