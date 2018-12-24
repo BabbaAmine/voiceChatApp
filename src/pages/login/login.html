@@ -13,7 +13,7 @@
         </ion-slides>
         <ion-row>
           <ion-col col-6>
-            <button ion-button round color="blue" class="login-button" (click)="goToLogin()"><font color="#f0f8ff">SIGN IN</font></button>
+            <button ion-button round color="blue" class="login-button" (click)="goToLogin()"><font color="#f0f8ff">Log In</font></button>
           </ion-col>
           <ion-col col-6>
             <button ion-button round color="blue" class="login-button" (click)="goToSignup()"><font color="#f0f8ff">SIGN UP</font> </button>
@@ -55,22 +55,34 @@
         GO TO LOGIN
         <ion-icon name="arrow-up"></ion-icon>
       </button>
-      <div style="padding: 32px">
-        <img [src]=base64Image (click)="accessGallery()"
-             style=" width: 200px;
-                     height: 200px; border-radius: 50%;
-                     margin-left: 10%; background-color: transparent;">
+      <div style="padding: 2px">
+        <!--<img [src]=base64Image (click)="accessGallery()"
+             style=" width: 150px;
+                     height: 150px; border-radius: 50%;
+                     margin-left: 10%; background-color: transparent;">-->
+        <ion-item>
+          <ion-label floating style="color: #2d2d2d" >Email</ion-label>
+          <ion-input type="text" style="color: #2d2d2d" [(ngModel)]="registerCredentials.email"></ion-input>
+        </ion-item>
         <ion-item>
           <ion-label floating style="color: #2d2d2d" >Username</ion-label>
           <ion-input type="text" style="color: #2d2d2d" [(ngModel)]="registerCredentials.username"></ion-input>
         </ion-item>
+          <ion-item>
+            <ion-label floating style="color: #2d2d2d" >First Name</ion-label>
+            <ion-input type="text" style="color: #2d2d2d" [(ngModel)]="registerCredentials.first_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating style="color: #2d2d2d" >Last Name</ion-label>
+            <ion-input type="text" style="color: #2d2d2d" [(ngModel)]="registerCredentials.last_name"></ion-input>
+          </ion-item>
         <ion-item>
           <ion-label floating style="color: #2d2d2d">Password</ion-label>
           <ion-input type="password" style="color: #2d2d2d" [(ngModel)]="registerCredentials.password"></ion-input>
         </ion-item>
         <ion-item class="margin-bottom">
           <ion-label floating style="color: #2d2d2d">Confirm Password</ion-label>
-          <ion-input type="password" style="color: #2d2d2d"></ion-input>
+          <ion-input type="password" style="color: #2d2d2d" [(ngModel)]="registerCredentials.confirmation_password"></ion-input>
         </ion-item>
         <button ion-button block round (click)="signup()" color="light" class="login-button">SIGN UP</button>
       </div>

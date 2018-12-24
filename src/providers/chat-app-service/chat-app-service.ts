@@ -20,6 +20,10 @@ export class ChatAppServiceProvider {
   private _urlGetUsers="/getAllUsers/";
   private _urlgetUserDetail="/getUserDetails/";
   private _urlgetRoomDetails="/getRoomDetails/";
+  private _urlgetUserfreinds="/getUsersFreinds/";
+  private _urlAddFriend="/addFreind/";
+  private _urlAcceptFriend="/accept_ignore_Freind/";
+  private _urlAddRoom="/addRoom/";
 
   constructor(public _http:Http,private _config: ConfigService) {
     console.log('Hello ChatAppServiceProvider Provider');
@@ -72,6 +76,46 @@ export class ChatAppServiceProvider {
     getRoomdetails(data){
         const url = this._config.baseUrl + this._urlgetRoomDetails+data.idroom+'/'+localStorage.getItem('pk');
         return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
+    }
+
+    getuserFreinds(data){
+        const url = this._config.baseUrl + this._urlgetUserfreinds+data.iduser;
+        return this._http.get(url, {headers: this._buildAuthHeaders()}).map(res => res.json());
+    }
+
+    addFriend(data){
+        const url = this._config.baseUrl + this._urlAddFriend;
+        return this._http.post(url,
+            {
+                senderId: data.senderid,
+                receiverId:data.receiverid,
+                statut:2,
+            }, {
+                headers: this._buildAuthHeaders()
+            });
+    }
+
+    addRoom(data){
+        const url = this._config.baseUrl + this._urlAddRoom;
+        return this._http.post(url,
+            {
+                idUser1: data.iduser1,
+                idUser2:data.iduser2,
+            }, {
+                headers: this._buildAuthHeaders()
+            });
+    }
+
+    acceptfriend(data){
+        const url = this._config.baseUrl + this._urlAcceptFriend+data.id;
+        return this._http.put(url,
+            {
+                senderId: data.senderid,
+                receiverId:data.receiverid,
+                statut:'1'
+            }, {
+                headers: this._buildAuthHeaders()
+            });
     }
 
 }

@@ -17,8 +17,8 @@
         <img  class="user-img" src="../../assets/imgs/avatar.png" alt="">
         <div class="msg-detail">
           <div class="msg-info">
-            <p *ngIf=" msg.senderId == currentUserId">Me &nbsp;&nbsp;&nbsp;il y a {{msg.created | relativeTime}}</p>
-            <p *ngIf=" msg.senderId != currentUserId">Someone &nbsp;&nbsp;&nbsp;il y a {{msg.created | relativeTime}}</p>
+            <p *ngIf=" msg.senderId == currentUserId">Me &nbsp;&nbsp;&nbsp; {{msg.created | relativeTime}}</p>
+            <p *ngIf=" msg.senderId != currentUserId">{{Ouser.username}} &nbsp;&nbsp;&nbsp; {{msg.created | relativeTime}}</p>
           </div>
           <div class="msg-content">
             <span class="triangle"></span>

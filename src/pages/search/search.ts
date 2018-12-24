@@ -13,6 +13,7 @@ export class SearchPage {
     items=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public chatAppService: ChatAppServiceProvider) {
+
   }
 
   ionViewDidLoad() {

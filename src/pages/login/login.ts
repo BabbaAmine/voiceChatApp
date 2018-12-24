@@ -4,6 +4,7 @@ import { AlertController, App, LoadingController, NavController, Slides, IonicPa
 import {MessageriePage} from "../messagerie/messagerie";
 import { Camera } from '@ionic-native/camera';
 import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
+import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -75,7 +76,7 @@ export class LoginPage {
         localStorage.setItem('lastname',result.user.last_name);
         localStorage.setItem('username',result.user.username);
 
-        this.navCtrl.setRoot(MessageriePage);
+        this.navCtrl.setRoot(TabsPage);
       },error=>{
         console.log(error);
       })

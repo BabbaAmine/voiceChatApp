@@ -9,7 +9,8 @@
   <div class="main-content" text-wrap text-center>
     <div class="circular"></div>
     <h2>{{user.first_name}} {{user.last_name}}</h2>
-    <p>{{user.username}}</p>
+    <p *ngIf="relation == 1">You are friends since {{friendsTime | relativeTime}}</p>
+    <p *ngIf="relation == 0">You are not friends</p>
     <p class="profile-description">{{user.description}}</p>
     <hr>
     <ion-list no-lines>
@@ -29,9 +30,21 @@
         <p>{{user.address}} Manouba 10 rue fatimides </p>
       </ion-item>
     </ion-list>
-    <a href="#" button ion-button round color="blue" icon-start>
+    <a *ngIf="relation == 0" button ion-button round color="blue" icon-start (click)="addFriend()" >
       <ion-icon name='add'></ion-icon>
-      Ajouter comme amis
+      Add as friend
+    </a>
+    <a *ngIf="relation == 1" button ion-button round color="blue" icon-start >
+      <ion-icon name='ios-happy-outline'></ion-icon>
+      You are friends
+    </a>
+    <a *ngIf="relation == 2" button ion-button round color="blue" icon-start >
+      <ion-icon name='add'></ion-icon>
+      Your friend request has been sent
+    </a>
+    <a *ngIf="relation == 3" button ion-button round color="blue" icon-start (click)="acceptFriend()">
+      <ion-icon name='ios-arrow-dropdown-circle-outline'></ion-icon>
+      Accept as friend
     </a>
   </div>
 

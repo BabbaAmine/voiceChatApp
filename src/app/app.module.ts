@@ -21,6 +21,10 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import {SearchPageModule} from "../pages/search/search.module";
 import {ProfilPageModule} from "../pages/profil/profil.module";
+import {FriendsPage} from "../pages/friends/friends";
+import {FriendsPageModule} from "../pages/friends/friends.module";
+import {SettingsPageModule} from "../pages/settings/settings.module";
+import {TabsPageModule} from "../pages/tabs/tabs.module";
 
 
 @NgModule({
@@ -28,6 +32,9 @@ import {ProfilPageModule} from "../pages/profil/profil.module";
     MyApp
   ],
   imports: [
+    TabsPageModule,
+    FriendsPageModule,
+    SettingsPageModule,
     ProfilPageModule,
     SearchPageModule,
     ChatRoomPageModule,

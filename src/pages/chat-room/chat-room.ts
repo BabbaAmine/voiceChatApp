@@ -25,11 +25,13 @@ export class ChatRoomPage {
     locale: string;
     matches:any;
     isRecording = false;
+    Ouser:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private events: Events,
               private chatservice: ChatAppServiceProvider,private tts: TextToSpeech,private speechRecognition: SpeechRecognition,
               private cd: ChangeDetectorRef) {
       this.idRoom = this.navParams.get('idroom');
+      this.Ouser = this.navParams.get('Ouser');
       this.currentUserId = localStorage.getItem('pk');
       this.text = 'Initial text';
       this.rate = 1;

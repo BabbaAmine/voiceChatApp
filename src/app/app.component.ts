@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import {MessageriePage} from "../pages/messagerie/messagerie";
+import {TabsPage} from "../pages/tabs/tabs";
 @Component({
   templateUrl: 'app.html'
 })
@@ -21,7 +22,7 @@ export class MyApp {
 
       this.token=localStorage.getItem('accessToken');
       if (this.token) {
-          this.rootPage = MessageriePage;
+          this.rootPage = TabsPage;
       }
       else {
           this.rootPage = HomePage;

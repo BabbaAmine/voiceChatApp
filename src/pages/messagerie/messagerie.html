@@ -11,14 +11,16 @@
 
 <ion-content padding class="chats">
   <ion-list>
-    <ion-list-header>Today</ion-list-header>
-    <ion-item *ngFor="let room of rooms" (click)="openRoom(room.message.idRoom)">
+    <ion-list-header>Actif</ion-list-header>
+    <ion-list-header>Message</ion-list-header>
+    <ion-item *ngFor="let room of rooms" (click)="openRoom(room.room.idRoom,room.user)">
       <ion-avatar item-left>
         <img src="../../assets/imgs/avatar.png">
       </ion-avatar>
       <h4>{{room.user.first_name}} {{room.user.last_name}}</h4>
       <p>{{room.message.message}}</p>
-      <ion-note item-end>il y a {{room.message.created | relativeTime}}</ion-note>
+      <ion-note item-end *ngIf="room.message.created != undefined">{{room.message.created | relativeTime}}</ion-note>
+      <ion-note item-end *ngIf="room.message.created == undefined">{{room.room.created | relativeTime}}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -16,6 +16,6 @@ export class RelativeTimePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: string, ...args) {
-      return distanceInWordsToNow(moment(value).format(), {addSuffix: false,locale:esLocale});
+      return distanceInWordsToNow(moment(value).format(), {addSuffix: false});
   }
 }
