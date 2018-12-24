@@ -14,7 +14,7 @@
       <div class="message"
            [class.left]=" msg.senderId == currentUserId"
            [class.right]=" msg.senderId != currentUserId">
-        <img  class="user-img" src="../../assets/imgs/avatar.png" alt="">
+        <img class="user-img" src="assets/imgs/avatar.png" alt="">
         <div class="msg-detail">
           <div class="msg-info">
             <p *ngIf=" msg.senderId == currentUserId">Me &nbsp;&nbsp;&nbsp; {{msg.created | relativeTime}}</p>

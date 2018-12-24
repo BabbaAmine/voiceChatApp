@@ -19,9 +19,9 @@
 
     <ion-item *ngFor="let item of items" (click)="viewProfile(item.id)">
       <ion-avatar item-left>
-        <img src="../../assets/imgs/avatar.png">
+        <img src="assets/imgs/avatar.png">
       </ion-avatar>
-      <h4>{{item.first_name}} {{item.last_name}}</h4>
+      <h4 style="margin-top: 3px">{{item.first_name}} {{item.last_name}}</h4>
       <p>{{item.email}}</p>
     </ion-item>
   </ion-list>
